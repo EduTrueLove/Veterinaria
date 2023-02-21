@@ -2,6 +2,7 @@ package Clientes;
 
 public class Mascota {
 
+
     public Integer id;
     public String nombre;
     public String raza;
@@ -15,4 +16,6 @@ public class Mascota {
         this.sexo = sexo;
         this.nombreDuenho = nombreDuenho;
     }
+
+
 }
