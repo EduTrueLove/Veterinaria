@@ -1,7 +1,6 @@
 package Veterinaria;
 
 import Clientes.Mascota;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Veterinaria {
@@ -12,7 +11,6 @@ public class Veterinaria {
 
     public static void menuPrincipal(){
         Mascota mascotaTemporal;
-
 
         boolean menu = true;
 
@@ -41,6 +39,7 @@ public class Veterinaria {
                     break;
                 case 2:
                     System.out.println("menu citas");
+                    System.out.println("menu a desarrollar tal vez nunca");
                     System.out.println();
                     break;
                 case 3:
@@ -88,16 +87,14 @@ public class Veterinaria {
                     Agenda.getAgenda().monstrarMascotas();
                     break;
                 case 3:
-                    System.out.println("buscar especificamente");
+                    buscarMascotaMenu();
                     System.out.println();
                     break;
                 case 4:
-                    System.out.println("modificar");
-                    System.out.println();
+                    Agenda.getAgenda().modificarMascota();
                     break;
                 case 5:
-                    System.out.println("eliminar");
-                    System.out.println();
+                    Agenda.getAgenda().eliminarMascota();
                     break;
                 case 6:
                     System.out.println("regresar menu anterior");
@@ -110,6 +107,35 @@ public class Veterinaria {
                     break;
             }
         }while (menu);
+
+    }
+
+
+
+    public static void buscarMascotaMenu(){
+        Integer id = null;
+        Integer indice = null;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Ingresa el id de la mascota a buscar: ");
+
+        try {
+            id = Integer.valueOf(sc.nextLine());
+        }catch (Exception e){
+            System.out.println("Ingresa un valor entero numerico correcto.");
+        }
+
+        indice = Agenda.getAgenda().buscarMascota(id);
+
+        if (indice == -1){
+            System.out.println("No hay mascotas registradas");
+        } else if (indice == -2) {
+            System.out.println("El id buscado no coincide con ninguna mascota registada.");
+        } else if (id == null) {
+            System.out.println("Id registrado erronamente");
+        }else{
+            Agenda.getAgenda().mostrarMascota(indice);
+        }
 
     }
 

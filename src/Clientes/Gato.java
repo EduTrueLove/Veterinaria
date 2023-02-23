@@ -10,12 +10,12 @@ public class Gato extends Mascota{
 
     public void mostrarDatos(){
         System.out.println();
-        System.out.println("\\u001B[34m Id del gato: "+ id +"\\u001B[0m");
-        System.out.println("\\u001B[34m Nombre del gato: " + nombre +"\\u001B[0m");
-        System.out.println("\\u001B[34m Raza del gato: " + raza +"\\u001B[0m");
-        System.out.println("\\u001B[34m Sexo del gato: " + sexo +"\\u001B[0m");
-        System.out.println("\\u001B[34m Nombre duenho del gato: "+ nombreDuenho +"\\u001B[0m");
-        System.out.println("\\u001B[34m Cuidado especial del gato: " + cuidadoEspecial +"\\u001B[0m");
+        System.out.println("Id del gato: "+ id);
+        System.out.println("Nombre del gato: " + nombre);
+        System.out.println("Raza del gato: " + raza);
+        System.out.println("Sexo del gato: " + sexo );
+        System.out.println("Nombre duenho del gato: "+ nombreDuenho);
+        System.out.println("Cuidado especial del gato: " + cuidadoEspecial);
         System.out.println();
     }
 

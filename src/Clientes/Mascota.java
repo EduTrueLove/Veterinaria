@@ -16,6 +16,4 @@ public class Mascota {
         this.sexo = sexo;
         this.nombreDuenho = nombreDuenho;
     }
-
-
 }
