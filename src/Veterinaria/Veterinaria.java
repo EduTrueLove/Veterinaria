@@ -4,12 +4,17 @@ import Clientes.Mascota;
 import java.util.Scanner;
 
 public class Veterinaria {
+    /*
+    Muchos de los metodos definidos aqui son privados ya que solo son usados dentro de esta clase
+    todos son estaticos ya que perteneces y no a la clase Veterinaria y el unico mecanismo
+    para hacer uso de ellos en el metodo estatico main es utilizando metodos estaticos
+    */
     public static void main(String[] args) {
         menuPrincipal();
     }
 
 
-    public static void menuPrincipal(){
+    private static void menuPrincipal(){
         Mascota mascotaTemporal;
 
         boolean menu = true;
@@ -54,7 +59,7 @@ public class Veterinaria {
         }while (menu);
     }
 
-    public static void menuMascotas(){
+    private static void menuMascotas(){
         boolean menu = true;
 
         do {
@@ -112,7 +117,7 @@ public class Veterinaria {
 
 
 
-    public static void buscarMascotaMenu(){
+    private static void buscarMascotaMenu(){
         Integer id = null;
         Integer indice = null;
         Scanner sc = new Scanner(System.in);

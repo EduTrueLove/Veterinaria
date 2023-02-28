@@ -3,17 +3,31 @@ package Veterinaria;
 import Clientes.Gato;
 import Clientes.Mascota;
 import Clientes.Perro;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+/*
+Clase definida con el patron de diseno Singleton para poder despachar
+el arreglo y tener acceso en el en la clase Veterinaria donde se administra todo
+ */
 public class Agenda {
+    /*
+    Muchos de los metodos definidos aqui aparte del singleton
+    son defaul = no tener modificador de acceso definido
+    eso nos permite poder hacer uso de ellos en cualquier clase que exista dentro de este mismo
+    paquete
+     */
+
+
     static private Agenda agenda = null;
     ArrayList<Mascota> mascotas = new ArrayList<>();
 
     private Agenda() {
     }
 
-    static public Agenda getAgenda() {
+    static Agenda getAgenda() {
 
         if (agenda == null) {
             agenda = new Agenda();
@@ -21,7 +35,7 @@ public class Agenda {
         return agenda;
     }
 
-    public void registroMascotas() {
+    void registroMascotas() {
         boolean menu = true;
 
         do {
@@ -61,7 +75,7 @@ public class Agenda {
         } while (menu);
     }
 
-    public void registrarPerro() {
+    void registrarPerro() {
         Integer id;
         String nombre;
         String raza;
@@ -87,7 +101,7 @@ public class Agenda {
         mascotas.add(perro);
     }
 
-    public void registrarGato() {
+    void registrarGato() {
         Integer id;
         String nombre;
         String raza;
@@ -115,7 +129,7 @@ public class Agenda {
 
     }
 
-    public String esPerroEsGato(Mascota mascota) {
+    String esPerroEsGato(Mascota mascota) {
         if (mascota.getClass().toString().equals("class Clientes.Gato")) {
             return "gato";
         } else if (mascota.getClass().toString().equals("class Clientes.Perro")) {
@@ -126,11 +140,11 @@ public class Agenda {
     }
 
 
-    public void monstrarMascotas() {
+    void monstrarMascotas() {
         Perro temporalPerro = null;
         Gato temporalGato = null;
 
-        if (mascotas.size() == 0){
+        if (mascotas.size() == 0) {
             System.out.println("No hay mascotas registradas.");
             return;
         }
@@ -146,20 +160,20 @@ public class Agenda {
         }
     }
 
-    public Integer buscarMascota(Integer id){
-        if (mascotas.size() == 0){
+    Integer buscarMascota(Integer id) {
+        if (mascotas.size() == 0) {
             return -1;
         }
 
-        for (int x=0; x < mascotas.size(); x++){
-            if (mascotas.get(x).id == id){
-               return x;
+        for (int x = 0; x < mascotas.size(); x++) {
+            if (mascotas.get(x).getId() == id) {
+                return x;
             }
         }
         return -2;
     }
 
-    public void mostrarMascota(Integer indice){
+    void mostrarMascota(Integer indice) {
         Perro temporalPerro = null;
         Gato temporalGato = null;
 
@@ -173,7 +187,7 @@ public class Agenda {
     }
 
 
-    public void modificarMascota(){
+    void modificarMascota() {
         Integer id = null;
         Integer indice;
         Perro temporalPerro;
@@ -192,20 +206,20 @@ public class Agenda {
         try {
             System.out.println("Ingresa un id de una mascota modificar: ");
             id = Integer.valueOf(sc.nextLine());
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Ingresa un valor entero numerico correcto.");
         }
 
         indice = buscarMascota(id);
 
-        if (indice == -1){
+        if (indice == -1) {
             System.out.println("No hay mascotas registradas");
         } else if (indice == -2) {
             System.out.println("El id buscado no coincide con ninguna mascota registada.");
         } else if (id == null) {
             System.out.println("Id registrado erronamente");
-        }else{
-            if (esPerroEsGato(mascotas.get(indice)).equals("gato")){
+        } else {
+            if (esPerroEsGato(mascotas.get(indice)).equals("gato")) {
                 System.out.println();
                 mostrarMascota(indice);
                 System.out.println("______________________________________");
@@ -224,10 +238,10 @@ public class Agenda {
                 nombreDuenhoNuevo = sc.nextLine();
                 System.out.println("Ingresa 'true' o 'false' si el gato tiene algun cuidado especial: ");
                 cuidadoEspecialNuevo = Boolean.valueOf(sc.nextLine());
-                temporalGato =new Gato(idNuevo, nombreNuevo, razaNuevo, sexoNuevo, nombreDuenhoNuevo, cuidadoEspecialNuevo);
+                temporalGato = new Gato(idNuevo, nombreNuevo, razaNuevo, sexoNuevo, nombreDuenhoNuevo, cuidadoEspecialNuevo);
                 mascotas.remove(mascotas.get(indice));
                 mascotas.add(indice, temporalGato);
-            }else{
+            } else {
                 System.out.println();
                 mostrarMascota(indice);
                 System.out.println("______________________________________");
@@ -255,7 +269,7 @@ public class Agenda {
     }
 
 
-    public void eliminarMascota(){
+    void eliminarMascota() {
         Integer id = null;
         Integer indice;
         Scanner sc = new Scanner(System.in);
@@ -263,19 +277,19 @@ public class Agenda {
         try {
             System.out.println("Ingresa un id de una mascota eliminar: ");
             id = Integer.valueOf(sc.nextLine());
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Ingresa un valor entero numerico correcto.");
         }
 
         indice = buscarMascota(id);
 
-        if (indice == -1){
+        if (indice == -1) {
             System.out.println("No hay mascotas registradas");
         } else if (indice == -2) {
             System.out.println("El id buscado no coincide con ninguna mascota registada.");
         } else if (id == null) {
             System.out.println("Id registrado erronamente");
-        }else{
+        } else {
             System.out.println();
             System.out.println("---------------------------------------------");
             System.out.println("La mascota que vas eliminar es la siguiente.");
